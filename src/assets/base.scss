@@ -2,7 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500&family=Noto+Sans:wght@400;700&display=swap');
 
 .pasja {
+  position: fixed;
+  z-index: 9999999;
+
   font-family: 'Mulish', sans-serif;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--popup {
+  }
 
   &__button {
     position: relative;

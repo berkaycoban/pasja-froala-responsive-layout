@@ -35,13 +35,13 @@ export default defineComponent({
     }
   },
   mounted() {
-    document.addEventListener('pasja-froala-layout-plugin', this.pasjaFroalaLayoutPluginListener)
+    document.addEventListener('pasja-froala-grid', this.pasjaFroalaGridListener)
   },
   unmounted() {
-    document.removeEventListener('pasja-froala-layout-plugin', this.pasjaFroalaLayoutPluginListener)
+    document.removeEventListener('pasja-froala-grid', this.pasjaFroalaGridListener)
   },
   methods: {
-    pasjaFroalaLayoutPluginListener(e: any) {
+    pasjaFroalaGridListener(e: any) {
       if (e.detail.froalaInstance) {
         this.isOpen = true
         this.froalaInstance = e.detail.froalaInstance
@@ -130,13 +130,7 @@ export default defineComponent({
 @import '@/assets/base.scss';
 
 .pasja {
-  position: fixed;
   inset: 0;
-  z-index: 9999999;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   background-color: rgba(#000, 0.4);
 
