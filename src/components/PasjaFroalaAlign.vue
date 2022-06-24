@@ -96,6 +96,8 @@ export default defineComponent({
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 4px;
+
+      padding: 16px;
     }
 
     &__button {
@@ -111,7 +113,7 @@ export default defineComponent({
       svg {
         width: 18px;
         height: 18px;
-        fill: #fff;
+        fill: #333;
       }
     }
   }
