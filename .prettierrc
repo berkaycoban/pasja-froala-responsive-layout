@@ -1,0 +1,13 @@
+{
+  "trailingComma": "none",
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 150,
+  "arrowParens": "avoid",
+  "pugSingleQuote": false,
+  "pugAttributeSeparator": "none",
+  "pugFramework": "vue",
+  "pugPrintWidth": 1000,
+  "pugEmptyAttributes": "none"
+}
