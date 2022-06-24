@@ -1,6 +1,1 @@
-<template>
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <title>align_horizontal_right</title>
-    <path d="M20.016 2.016h1.969v19.969h-1.969v-19.969zM2.016 9.984h15.984v-3h-15.984v3zM8.016 17.016h9.984v-3h-9.984v3z"></path>
-  </svg>
-</template>
+<template><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.016 2.016h1.969v19.969h-1.969V2.016zm-18 7.968H18v-3H2.016v3zm6 7.032H18v-3H8.016v3z"/></svg></template>

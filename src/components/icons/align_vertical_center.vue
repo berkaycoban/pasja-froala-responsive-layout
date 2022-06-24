@@ -1,8 +1,1 @@
-<template>
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <title>align_vertical_center</title>
-    <path
-      d="M21.984 11.016h-4.969v-5.016h-3v5.016h-4.031v-8.016h-3v8.016h-5.156v1.969h5.156v8.016h3v-8.016h4.031v5.016h3v-5.016h4.969v-1.969z"
-    ></path>
-  </svg>
-</template>
+<template><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21.984 11.016h-4.969V6h-3v5.016H9.984V3h-3v8.016H1.828v1.969h5.156v8.016h3v-8.016h4.031v5.016h3v-5.016h4.969v-1.969z"/></svg></template>

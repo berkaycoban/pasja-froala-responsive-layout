@@ -1,6 +1,1 @@
-<template>
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-    <title>align_vertical_top</title>
-    <path d="M21.984 2.016v1.969h-19.969v-1.969h19.969zM6.984 21.984h3v-15.984h-3v15.984zM14.016 15.984h3v-9.984h-3v9.984z"></path>
-  </svg>
-</template>
+<template><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M21.984 2.016v1.969H2.015V2.016h19.969zm-15 19.968h3V6h-3v15.984zm7.032-6h3V6h-3v9.984z"/></svg></template>
