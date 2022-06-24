@@ -6,6 +6,6 @@ import PasjaFroalaGrid from './components/PasjaFroalaGrid.vue'
 PasjaFroalaGrid
 </template>
 
-<style>
-@import './assets/base.css';
+<style lang="scss">
+@import './assets/base.scss';
 </style>

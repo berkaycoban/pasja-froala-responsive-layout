@@ -16,7 +16,7 @@ export default defineComponent({
   components: { Mobile, Tablet, Display },
   data() {
     return {
-      isOpen: true as boolean,
+      isOpen: false as boolean,
       froalaInstance: null as any,
 
       layout: {
@@ -106,8 +106,8 @@ export default defineComponent({
     .header
       .header__title Devices
       .header__actions
-        button.header__action-button(@click="addColumn") Add Column
-        button.header__action-button.header__action-button--reset(@click="resetColumn") Reset
+        button.pasja__button.pasja__button--add-column(@click="addColumn") Add Column
+        button.pasja__button.pasja__button--reset(@click="resetColumn") Reset
     .navbar
       .navbar__item Mobile
         Mobile
@@ -123,10 +123,12 @@ export default defineComponent({
           input.content__input(type="number" v-model="col.lg.value" placeholder="1-12" min="0" max="12")
     .footer
       input.footer__input(type="number" v-model="layout.rows[0].gutter" placeholder="column spacing 0 - 5" min="0" max="5")
-      button.footer__button(@click="confirm") Confirm
+      button.pasja__button.pasja__button--confirm(@click="confirm") Confirm
 </template>
 
 <style lang="scss">
+@import '@/assets/base.scss';
+
 .pasja {
   position: fixed;
   inset: 0;
@@ -167,23 +169,6 @@ export default defineComponent({
         display: flex;
         align-items: center;
         gap: 8px;
-      }
-      &__action-button {
-        background-color: transparent;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        cursor: pointer;
-
-        padding-left: 0;
-        padding-right: 0;
-        color: inherit;
-
-        padding: 8px 16px;
-
-        &--reset {
-          border: 0;
-          opacity: 0.6;
-        }
       }
     }
     .navbar {
@@ -263,43 +248,6 @@ export default defineComponent({
         &::placeholder {
           color: #d1d1d6;
           font-size: 12px;
-        }
-      }
-
-      &__button {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        padding: 8px 16px;
-
-        background-color: transparent;
-        border: 0;
-        border-radius: 28px;
-        cursor: pointer;
-        color: #286efa;
-
-        font-size: 14px;
-        font-weight: 500;
-
-        &::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: 28px;
-          transition-property: opacity, background-color;
-          transition-duration: 0.3s;
-          opacity: 0;
-          user-select: none;
-          pointer-events: none;
-        }
-
-        &:hover {
-          &::before {
-            opacity: 0.15;
-            background-color: currentColor;
-          }
         }
       }
     }
