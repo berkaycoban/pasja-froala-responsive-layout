@@ -101,7 +101,7 @@ export default defineComponent({
 </script>
 
 <template lang="pug">
-.pasja(v-if="isOpen" @click.self="close")
+.pasja.pasja--grid(v-if="isOpen" @click.self="close")
   .pasja__content
     .header
       .header__title Devices
@@ -129,119 +129,117 @@ export default defineComponent({
 <style lang="scss">
 @import '@/assets/base.scss';
 
-.pasja {
-  inset: 0;
+.pasja--grid {
+  .pasja {
+    &__content {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.25);
 
-  background-color: rgba(#000, 0.4);
+      color: #333;
 
-  &__content {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 34px rgba(0, 0, 0, 0.25);
-
-    color: #333;
-
-    display: grid;
-    grid-template-areas:
-      'header header'
-      'navbar content'
-      'footer footer';
-    grid-template-columns: minmax(100px, auto) 1fr;
-    gap: 16px;
-
-    .header {
-      grid-area: header;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      padding: 16px;
-      border-bottom: 1px solid #d1d1d6;
-
-      &__actions {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-    }
-    .navbar {
-      grid-area: navbar;
-
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-areas:
+        'header header'
+        'navbar content'
+        'footer footer';
+      grid-template-columns: minmax(100px, auto) 1fr;
       gap: 16px;
 
-      padding-left: 16px;
+      .header {
+        grid-area: header;
 
-      &__item {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        flex-grow: 1;
-        gap: 8px;
+        padding: 16px;
+        border-bottom: 1px solid #d1d1d6;
 
-        font-size: 12px;
-        font-weight: 300;
-
-        svg {
-          width: 16px;
-          height: 16px;
+        &__actions {
+          display: flex;
+          align-items: center;
+          gap: 8px;
         }
       }
-    }
-    .content {
-      grid-area: content;
+      .navbar {
+        grid-area: navbar;
 
-      padding-right: 1rem;
-
-      &__row {
-        display: flex;
-        gap: 1rem;
-      }
-
-      &__column {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-        flex-grow: 1;
-      }
+        gap: 16px;
 
-      &__input {
-        border: 1px solid #d1d1d6;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
+        padding-left: 16px;
 
-        min-width: 80px;
+        &__item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
 
-        &::placeholder {
-          color: #aeaeb2;
+          flex-grow: 1;
+          gap: 8px;
+
           font-size: 12px;
+          font-weight: 300;
+
+          svg {
+            width: 16px;
+            height: 16px;
+          }
         }
       }
-    }
-    .footer {
-      grid-area: footer;
+      .content {
+        grid-area: content;
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
+        padding-right: 1rem;
 
-      border-top: 1px solid #d1d1d6;
-      padding: 1rem;
+        &__row {
+          display: flex;
+          gap: 1rem;
+        }
 
-      &__input {
-        border: 1px solid #d1d1d6;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
+        &__column {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          flex-grow: 1;
+        }
 
-        min-width: 180px;
+        &__input {
+          border: 1px solid #d1d1d6;
+          padding: 0.5rem 1rem;
+          border-radius: 0.5rem;
 
-        &::placeholder {
-          color: #d1d1d6;
-          font-size: 12px;
+          min-width: 80px;
+
+          &::placeholder {
+            color: #aeaeb2;
+            font-size: 12px;
+          }
+        }
+      }
+      .footer {
+        grid-area: footer;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+
+        border-top: 1px solid #d1d1d6;
+        padding: 1rem;
+
+        &__input {
+          border: 1px solid #d1d1d6;
+          padding: 0.5rem 1rem;
+          border-radius: 0.5rem;
+
+          min-width: 180px;
+
+          &::placeholder {
+            color: #d1d1d6;
+            font-size: 12px;
+          }
         }
       }
     }

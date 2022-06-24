@@ -71,7 +71,7 @@ export default defineComponent({
 </script>
 
 <template lang="pug">
-.pasja.pasja--popup(v-if="isOpen && element" :style="{ top: top, left: left }")
+.pasja.pasja--align(v-if="isOpen && element" :style="{ top: top, left: left }")
   .pasja__actions
     .pasja__button(@click="setClass('justify-start')") 
       AlignHorizontalLeft
@@ -90,7 +90,7 @@ export default defineComponent({
 <style lang="scss">
 @import '@/assets/base.scss';
 
-.pasja--popup {
+.pasja--align {
   .pasja {
     &__actions {
       display: grid;
