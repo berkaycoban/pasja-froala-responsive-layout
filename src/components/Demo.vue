@@ -2,7 +2,7 @@
 import { nextTick, ref } from 'vue'
 
 // @ts-ignore
-import FroalaEditor from 'froala-editor/js/froala_editor.pkgd.min.js'
+import FroalaEditor from 'froala-editor'
 import 'froala-editor/css/froala_editor.pkgd.min.css'
 import 'froala-editor/css/froala_style.min.css'
 
