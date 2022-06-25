@@ -23,6 +23,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "froala-editor": "^4.0.12",
     "vue": "^3.2.37"
   },
   "devDependencies": {

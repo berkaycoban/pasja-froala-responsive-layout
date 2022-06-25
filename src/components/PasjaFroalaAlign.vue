@@ -73,17 +73,17 @@ export default defineComponent({
 <template lang="pug">
 .pasja.pasja--align(v-if="isOpen && element" :style="{ top: top, left: left }")
   .pasja__actions
-    .pasja__button(@click="setClass('justify-start')") 
+    .pasja__button(@click="setClass('justify-content-start')") 
       AlignHorizontalLeft
-    .pasja__button(@click="setClass('justify-center')")
+    .pasja__button(@click="setClass('justify-content-center')")
       AlignHorizontalCenter
-    .pasja__button(@click="setClass('justify-end')")
+    .pasja__button(@click="setClass('justify-content-end')")
       AlignHorizontalRight
-    .pasja__button(@click="setClass('items-start')")
+    .pasja__button(@click="setClass('align-items-start')")
       AlignVerticalTop
-    .pasja__button(@click="setClass('items-center')")
+    .pasja__button(@click="setClass('align-items-center')")
       AlignVerticalCenter
-    .pasja__button(@click="setClass('items-end')")
+    .pasja__button(@click="setClass('align-items-end')")
       AlignVerticalBottom
 </template>
 

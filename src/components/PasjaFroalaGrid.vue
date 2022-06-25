@@ -9,7 +9,8 @@ const SM_COL_PREFIX = 'col-sm-'
 const MD_COL_PREFIX = 'col-md-'
 const LG_COL_PREFIX = 'col-lg-'
 
-type col = { sm: { value: any }; md: { value: any }; lg: { value: any } }
+type colValue = { value: any; isValid: boolean }
+type col = { sm: colValue; md: colValue; lg: colValue }
 
 export default defineComponent({
   name: 'PasjaFroalaGrid',
@@ -23,9 +24,10 @@ export default defineComponent({
         rows: [
           {
             cols: [
-              { sm: { value: '' }, md: { value: '' }, lg: { value: '' } },
-              { sm: { value: '' }, md: { value: '' }, lg: { value: '' } }
+              { sm: { value: '', isValid: true }, md: { value: '', isValid: true }, lg: { value: '', isValid: true } },
+              { sm: { value: '', isValid: true }, md: { value: '', isValid: true }, lg: { value: '', isValid: true } }
             ] as col[],
+
             gutter: ''
           }
         ]
@@ -49,6 +51,7 @@ export default defineComponent({
     },
 
     close() {
+      this.resetColumn()
       this.froalaInstance = null
       this.isOpen = false
     },
@@ -57,12 +60,13 @@ export default defineComponent({
       const cols = this.layout.rows[0].cols
       if (cols.length === 12) return
 
-      cols.push({ sm: { value: '' }, md: { value: '' }, lg: { value: '' } })
+      cols.push({ sm: { value: '', isValid: true }, md: { value: '', isValid: true }, lg: { value: '', isValid: true } })
     },
     resetColumn() {
+      this.layout.rows[0].gutter = ''
       this.layout.rows[0].cols = [
-        { sm: { value: '' }, md: { value: '' }, lg: { value: '' } },
-        { sm: { value: '' }, md: { value: '' }, lg: { value: '' } }
+        { sm: { value: '', isValid: true }, md: { value: '', isValid: true }, lg: { value: '', isValid: true } },
+        { sm: { value: '', isValid: true }, md: { value: '', isValid: true }, lg: { value: '', isValid: true } }
       ]
     },
     confirm() {
@@ -95,6 +99,20 @@ export default defineComponent({
       this.froalaInstance.selection.restore() // restore caret position
       this.froalaInstance.html.insert(html)
       this.close()
+    },
+
+    validateHandler(item: colValue) {
+      if (item.value > 12) {
+        item.isValid = false
+        item.value = 12
+        return
+      }
+
+      if (item.value < 1) {
+        item.isValid = false
+        item.value = 1
+        return
+      }
     }
   }
 })
@@ -103,26 +121,26 @@ export default defineComponent({
 <template lang="pug">
 .pasja.pasja--grid(v-if="isOpen" @click.self="close")
   .pasja__content
-    .header
-      .header__title Devices
-      .header__actions
+    .pasja__header
+      .pasja__header-title Devices
+      .pasja__header-actions
         button.pasja__button.pasja__button--add-column(@click="addColumn") Add Column
         button.pasja__button.pasja__button--reset(@click="resetColumn") Reset
-    .navbar
-      .navbar__item Mobile
+    .pasja__navbar
+      .pasja__navbar-item Mobile
         Mobile
-      .navbar__item Tablet
+      .pasja__navbar-item Tablet
         Tablet
-      .navbar__item Desktop
+      .pasja__navbar-item Desktop
         Display
-    .content
-      .content__row(v-for="row in layout.rows")
-        .content__column(v-for="col in row.cols")
-          input.content__input(type="number" v-model="col.sm.value" placeholder="1-12" min="0" max="12")
-          input.content__input(type="number" v-model="col.md.value" placeholder="1-12" min="0" max="12")
-          input.content__input(type="number" v-model="col.lg.value" placeholder="1-12" min="0" max="12")
-    .footer
-      input.footer__input(type="number" v-model="layout.rows[0].gutter" placeholder="column spacing 0 - 5" min="0" max="5")
+    .pasja__grid
+      .pasja__grid-row(v-for="row in layout.rows")
+        .pasja__grid-column(v-for="col in row.cols")
+          input.pasja__grid-input(type="number" v-model="col.sm.value" @change="validateHandler(col.sm)" placeholder="1-12" min="0" max="12" :disabled="!col.sm.isValid")
+          input.pasja__grid-input(type="number" v-model="col.md.value" @change="validateHandler(col.md)" placeholder="1-12" min="0" max="12" :disabled="!col.md.isValid")
+          input.pasja__grid-input(type="number" v-model="col.lg.value" @change="validateHandler(col.lg)" placeholder="1-12" min="0" max="12" :disabled="!col.lg.isValid")
+    .pasja__footer
+      input.pasja__footer-input(type="number" v-model="layout.rows[0].gutter" placeholder="column spacing 0 - 5" min="0" max="5")
       button.pasja__button.pasja__button--confirm(@click="confirm") Confirm
 </template>
 
@@ -145,101 +163,103 @@ export default defineComponent({
         'footer footer';
       grid-template-columns: minmax(100px, auto) 1fr;
       gap: 16px;
+    }
 
-      .header {
-        grid-area: header;
+    &__header {
+      grid-area: header;
 
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 16px;
+      border-bottom: 1px solid #d1d1d6;
+
+      &-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+
+    &__navbar {
+      grid-area: navbar;
+
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      padding-left: 16px;
+
+      &-item {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        padding: 16px;
-        border-bottom: 1px solid #d1d1d6;
+        flex-grow: 1;
+        gap: 8px;
 
-        &__actions {
-          display: flex;
-          align-items: center;
-          gap: 8px;
+        font-size: 12px;
+        font-weight: 300;
+
+        svg {
+          width: 16px;
+          height: 16px;
         }
       }
-      .navbar {
-        grid-area: navbar;
+    }
 
+    &__grid {
+      grid-area: content;
+
+      padding-right: 1rem;
+
+      &-row {
+        display: flex;
+        gap: 1rem;
+      }
+
+      &-column {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 1rem;
+        flex-grow: 1;
+      }
 
-        padding-left: 16px;
+      &-input {
+        border: 1px solid #d1d1d6;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
 
-        &__item {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+        min-width: 80px;
 
-          flex-grow: 1;
-          gap: 8px;
-
+        &::placeholder {
+          color: #aeaeb2;
           font-size: 12px;
-          font-weight: 300;
-
-          svg {
-            width: 16px;
-            height: 16px;
-          }
         }
       }
-      .content {
-        grid-area: content;
+    }
+    &__footer {
+      grid-area: footer;
 
-        padding-right: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
 
-        &__row {
-          display: flex;
-          gap: 1rem;
-        }
+      border-top: 1px solid #d1d1d6;
+      padding: 1rem;
 
-        &__column {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          flex-grow: 1;
-        }
+      &-input {
+        border: 1px solid #d1d1d6;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
 
-        &__input {
-          border: 1px solid #d1d1d6;
-          padding: 0.5rem 1rem;
-          border-radius: 0.5rem;
+        min-width: 180px;
 
-          min-width: 80px;
-
-          &::placeholder {
-            color: #aeaeb2;
-            font-size: 12px;
-          }
-        }
-      }
-      .footer {
-        grid-area: footer;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 2rem;
-
-        border-top: 1px solid #d1d1d6;
-        padding: 1rem;
-
-        &__input {
-          border: 1px solid #d1d1d6;
-          padding: 0.5rem 1rem;
-          border-radius: 0.5rem;
-
-          min-width: 180px;
-
-          &::placeholder {
-            color: #d1d1d6;
-            font-size: 12px;
-          }
+        &::placeholder {
+          color: #d1d1d6;
+          font-size: 12px;
         }
       }
     }

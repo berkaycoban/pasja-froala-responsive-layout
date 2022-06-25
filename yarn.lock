@@ -978,6 +978,11 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.5.tgz#76c8584f4fc843db64702a6bd04ab7a8bd666da3"
   integrity sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==
 
+froala-editor@^4.0.12:
+  version "4.0.12"
+  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-4.0.12.tgz#b1f51e88fb27cec985770e2989ec5eaa9f1b88f4"
+  integrity sha512-y4uh6DOKYddXZNx2lGhzng8KFHqb2/yD/u9SlT9zXQDwoo4N2AtINs8F4CwDmKFDiwMMaWEpEmWWgsFYQ8fo8Q==
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"

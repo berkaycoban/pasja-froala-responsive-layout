@@ -77,3 +77,13 @@
     }
   }
 }
+
+// froala editor grid mark
+.fr-box .row {
+  border: 1px solid #ddd;
+  padding: 8px;
+
+  * {
+    border: 1px solid #f2f2f2;
+  }
+}
