@@ -1,12 +1,22 @@
 import path from 'path'
 import { fileURLToPath, URL } from 'url'
 
-import { defineConfig } from 'vite'
+import { defineConfig, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  build: {
+const isBuildWebsite = process.env.TYPE === 'website'
+
+const config = {
+  plugins: [vue()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  }
+} as UserConfig
+
+if (!isBuildWebsite)
+  config.build = {
     lib: {
       entry: path.resolve(__dirname, 'src/install.ts'),
       name: 'pasja-froala-responsive-layout',
@@ -24,11 +34,7 @@ export default defineConfig({
         }
       }
     }
-  },
-  plugins: [vue()],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
   }
-})
+
+// https://vitejs.dev/config/
+export default defineConfig(config)

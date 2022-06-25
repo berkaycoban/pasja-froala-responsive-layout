@@ -16,7 +16,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check build-only",
+    "build-npm": "run-p type-check build-only",
+    "build": "TYPE=website vite build",
     "preview": "vite preview --port 4173",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
